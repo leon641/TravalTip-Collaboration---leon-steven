@@ -1,10 +1,9 @@
 import { placeService } from '../services/place-service.js'
 
 export const mapService = {
-  initMap,
-  addMarker,
-  panTo,
-  
+    initMap,
+    addMarker,
+    panTo
 }
 
 // Var that is used throughout this Module (not global)
@@ -21,15 +20,16 @@ function initMap(lat = 32.0749831, lng = 34.9120554) {
     })
     console.log('Map!', gMap)
 
-    google.maps.event.addListener(gMap, 'click', function (event) {
-      let lat = event.latLng.lat()
-      let lng = event.latLng.lng()
-      console.log(lat, lng)
-      let name = prompt('enter the name of this place')
-      placeService.createPlace(name, lat, lng)
-      // renderLocations()
-    })
-  })
+            google.maps.event.addListener(gMap, 'click', function (event) {
+
+                let lat = event.latLng.lat()
+                let lng = event.latLng.lng()
+                console.log(lat,lng)
+                let name = prompt('enter the name of this place')
+                placeService.createPlace(name, lat, lng)
+                // renderLocations()
+              })
+        })
 }
 
 function addMarker(loc) {
