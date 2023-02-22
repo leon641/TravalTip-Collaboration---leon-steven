@@ -1,4 +1,5 @@
-import { storageService } from './services/async-storage.service.js'
+
+import { storageService } from '../services/async-storage.service.js'
 
 export const placeService = {
     getPlace,
