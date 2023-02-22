@@ -68,9 +68,9 @@ function renderLocations() {
             locations.forEach(place => {
                 let createdAt = makeTime(place.createdAt)
                 strHtml += `
-                <div class='location-card'>
+                <div class='location-card' id=${place.id}>
                 <h3>${place.name}</h3>
-                <p>lan: ${place.lat}, lng${place.lng}</p>
+                <p>lan: ${place.lat}, lng: ${place.lng}</p>
                 <small>created at ${createdAt}</small>
                 </div>
                 `
