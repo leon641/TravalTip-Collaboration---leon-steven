@@ -7,8 +7,10 @@ export const placeService = {
     getAllPlaces,
 }
 
+const PLACE_KEY = 'locations'
+
 function getPlace(id) {
-    return storageService.get(locations, id) //im not sure what place is tbh
+    return storageService.get(PLACE_KEY, id)
         .then(() => {//if it found this spot saved
             return //i guess here it returns the locations?
         })
@@ -23,10 +25,10 @@ function createPlace(name, lat, lan) {
         createdAt: Date.now(),
         updatedAt: Date.now(),
     }
-    storageService.post(locations, place)
+    storageService.post(PLACE_KEY, place)
 
 }
 
 function getAllPlaces() {
-    return storageService.query(locations)//i think thats all
+    return storageService.query(PLACE_KEY)//i think thats all
 }
