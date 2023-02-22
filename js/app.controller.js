@@ -6,7 +6,7 @@ import { placeService } from './services/place-service.js'
 
 window.onload = onInit
 // window.onAddMarker = onAddMarker
-window.onPanTo = onPanTo
+// window.onPanTo = onPanTo
 window.onGetLocs = onGetLocs
 window.onGetUserPos = onGetUserPos
 window.onRemove = onRemove
@@ -55,7 +55,7 @@ function onGetUserPos() {
         .then(pos => {
             // console.log('User position is:', pos.coords)
             // document.querySelector('.user-pos').innerText =
-            //     `Latitude: ${pos.coords.latitude} - Longitude: ${pos.coords.longitude}`
+                // `Latitude: ${pos.coords.latitude} - Longitude: ${pos.coords.longitude}`
             mapService.addMarker({ lat: pos.coords.latitude, lng: pos.coords.longitude })
         })
         .catch(err => {
