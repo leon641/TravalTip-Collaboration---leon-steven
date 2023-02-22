@@ -40,6 +40,10 @@ button{
     border: none;
 }
 
+button:hover {
+    cursor: pointer;
+}
+
 .btn-header{
     padding-block: 5px;
     margin-left: 0;

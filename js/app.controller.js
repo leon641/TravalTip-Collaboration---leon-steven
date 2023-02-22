@@ -11,7 +11,11 @@ window.onGetLocs = onGetLocs
 window.onGetUserPos = onGetUserPos
 //uploading first 
 function onInit() {
-    mapService.initMap()
+    const params = new Proxy(new URLSearchParams(window.location.search), {
+        get: (searchParams, prop) => searchParams.get(prop),
+      });
+
+    mapService.initMap(+params.lat,+params.lng)
         .then(() => {
             console.log('Map is ready')
         })
@@ -53,4 +57,12 @@ function onGetUserPos() {
 function onPanTo() {
     console.log('Panning the Map')
     mapService.panTo(35.6895, 139.6917)
+}
+
+function onCopyToClipBoard() {
+let currLoc = getCurrMapLocation()
+}
+
+function initNothing() {
+    console.log("nothing");
 }

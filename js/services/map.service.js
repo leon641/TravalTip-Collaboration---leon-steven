@@ -19,7 +19,7 @@ function initMap(lat = 32.0749831, lng = 34.9120554) {
             gMap = new google.maps.Map(
                 document.querySelector('#map'), {
                 center: { lat, lng },
-                zoom: 15
+                zoom: 10
             })
             console.log('Map!', gMap)
 
@@ -32,13 +32,7 @@ function initMap(lat = 32.0749831, lng = 34.9120554) {
                 //adding here to make new place
                 placeService.createPlace(name, lat, lng)
               })
-              
-    
         })
-
-        
-
-
 }
 
 function addMarker(loc) {
@@ -58,9 +52,9 @@ function panTo(lat, lng) {
 
 function _connectGoogleApi() {
     if (window.google) return Promise.resolve()
-    const API_KEY = 'AIzaSyADevWvan2PT-pGl5vkqzZXU-eYWLtMQak&callback=initMap' //TODO: Enter your API Key
+    const API_KEY = 'AIzaSyADevWvan2PT-pGl5vkqzZXU-eYWLtMQak' //TODO: Enter your API Key
     var elGoogleApi = document.createElement('script')
-    elGoogleApi.src = `https://maps.googleapis.com/maps/api/js?key=${API_KEY}`
+    elGoogleApi.src = `https://maps.googleapis.com/maps/api/js?key=${API_KEY}&callback=initNothing`
     elGoogleApi.async = true
     document.body.append(elGoogleApi)
 
