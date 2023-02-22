@@ -27,6 +27,7 @@ section.main-container {
     display: grid;
     grid-template-columns: 3fr 4fr;
     grid-template-rows: 1fr 1fr;
+    gap: 5px;
 }
 
 div#map {
@@ -54,4 +55,15 @@ button:hover {
 .search{
     padding-inline: 16px;
     height: 29px;
+}
+div.location-card{
+    background-color: azure;
+}
+div.location-card h3{
+    margin-top: 2px;
+    margin-bottom: 8px;
+}
+
+div.location-card p{
+margin: 5px 0;
 }

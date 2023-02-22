@@ -16,11 +16,11 @@ function getPlace(id) {
         })
 }
 
-function createPlace(name, lat, lan) {
+function createPlace(name, lat, lng) {
     let place = {
         name: name,
         lat: lat,
-        lan: lan,
+        lng: lng,
         //id will be made in async-storage
         createdAt: Date.now(),
         updatedAt: Date.now(),

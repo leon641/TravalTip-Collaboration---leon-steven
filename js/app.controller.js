@@ -10,28 +10,22 @@ window.onPanTo = onPanTo
 window.onGetLocs = onGetLocs
 window.onGetUserPos = onGetUserPos
 window.onCopyToClipBoard = onCopyToClipBoard
-//uploading first 
 
-google.maps.event.addListener(gMap, 'click', function (event) {
 
-    let lat = event.latLng.lat()
-    let lng = event.latLng.lng()
-    console.log(lat,lng)
-    let name = 'reeee'//ofc to change
-    //adding here to make new place
-    placeService.createPlace(name, lat, lng)
-  })
-  
+
+
 function onInit() {
     const params = new Proxy(new URLSearchParams(window.location.search), {
         get: (searchParams, prop) => searchParams.get(prop),
-      });
+    })
 
-    mapService.initMap(+params.lat,+params.lng)
+    mapService.initMap(+params.lat, +params.lng)
         .then(() => {
             console.log('Map is ready')
         })
         .catch(() => console.log('Error: cannot init map'))
+
+    renderLocations()
 }
 
 // This function provides a Promise API to the callback-based-api of getCurrentPosition
@@ -51,7 +45,8 @@ function onGetLocs() {
     locService.getLocs()
         .then(locs => {
             console.log('Locations:', locs)
-            document.querySelector('.locs').innerText = JSON.stringify(locs, null, 2)
+            // document.querySelector('.locs').innerText = JSON.stringify(locs, null, 2)
+            renderLocations()
         })
 }
 
@@ -66,16 +61,48 @@ function onGetUserPos() {
             console.log('err!!!', err)
         })
 }
+
+function renderLocations() {
+    placeService.getAllPlaces()
+        .then((locations) => {
+            let strHtml = ``
+            locations.forEach(place => {
+                let createdAt = makeTime(place.createdAt)
+                strHtml += `
+                <div class='location-card' id=${place.id}>
+                <h3>${place.name}</h3>
+                <p>lan: ${place.lat}, lng: ${place.lng}</p>
+                <small>created at ${createdAt}</small>
+                </div>
+                `
+            })
+            document.querySelector('section.saved-locations').innerHTML = strHtml
+        })
+}
+
+function makeTime(time) {
+    const date = new Date(time)
+    const options = { 
+        year: 'numeric', 
+        month: 'numeric', 
+        day: 'numeric', 
+        hour: 'numeric',
+        minute: 'numeric',  
+        hour12: false 
+      }
+    return date.toLocaleString('en-US', options)
+}
+
 function onPanTo() {
     console.log('Panning the Map')
     mapService.panTo(35.6895, 139.6917)
 }
 
 function onCopyToClipBoard() {
-    console.log('copy');
+        console.log('copy');
     mapService.getCurrMapLocation()
 }
 
 function initNothing() {
-    console.log("nothing");
+    console.log("nothing")
 }
