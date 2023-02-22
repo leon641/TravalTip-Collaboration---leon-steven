@@ -98,10 +98,7 @@ function onPanTo() {
     mapService.panTo(35.6895, 139.6917)
 }
 
-function onCopyToClipBoard() {
-        console.log('copy');
-    mapService.getCurrMapLocation()
-}
+
 
 function initNothing() {
     console.log("nothing")
