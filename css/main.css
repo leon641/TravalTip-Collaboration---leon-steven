@@ -4,8 +4,10 @@
 
 body {
     margin: 0;
-    padding: 0;
+    padding: 5px;
     background-color: rgb(230, 103, 57);
+    margin-inline: 15px;
+    color: rgb(58, 43, 43);
 }
 
 h1 {
@@ -30,4 +32,22 @@ section.main-container {
 div#map {
     grid-row: 1/3;
     grid-column: 2;
+}
+
+button{
+    background-color: gray;
+    color: rgb(224, 209, 209);
+    border: none;
+}
+
+.btn-header{
+    padding-block: 5px;
+    margin-left: 0;
+    margin-right: 2px;
+    height: 29px;
+}
+
+.search{
+    padding-inline: 16px;
+    height: 29px;
 }
