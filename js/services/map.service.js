@@ -3,7 +3,8 @@ import { placeService } from '../services/place-service.js'
 export const mapService = {
     initMap,
     addMarker,
-    panTo
+    panTo,
+    getCurrMapLocation
 }
 
 
@@ -55,3 +56,20 @@ function _connectGoogleApi() {
         elGoogleApi.onerror = () => reject('Google script failed to load')
     })
 }
+
+function getCurrMapLocation() {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(showPosition);
+      } else {
+        alert("Geolocation is not supported by this browser.");
+      }
+      console.log(navigator);
+}
+
+  function showPosition(position) {
+    var lat = position.coords.latitude;
+    var lng = position.coords.longitude;
+    gMap.getCenter(new google.maps.LatLng(lat, lng));
+    console.log(lat,lng);
+
+  }

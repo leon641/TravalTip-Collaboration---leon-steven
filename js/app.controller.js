@@ -9,6 +9,7 @@ window.onAddMarker = onAddMarker
 window.onPanTo = onPanTo
 window.onGetLocs = onGetLocs
 window.onGetUserPos = onGetUserPos
+window.onCopyToClipBoard = onCopyToClipBoard
 //uploading first 
 
 google.maps.event.addListener(gMap, 'click', function (event) {
@@ -71,7 +72,8 @@ function onPanTo() {
 }
 
 function onCopyToClipBoard() {
-let currLoc = getCurrMapLocation()
+    console.log('copy');
+    mapService.getCurrMapLocation()
 }
 
 function initNothing() {
