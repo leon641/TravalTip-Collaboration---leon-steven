@@ -4,6 +4,7 @@ import { storageService } from '../services/async-storage.service.js'
 export const placeService = {
     getPlace,
     createPlace,
+    getAllPlaces,
 }
 
 function getPlace(id) {
@@ -23,4 +24,9 @@ function createPlace(name, lat, lan) {
         updatedAt: Date.now(),
     }
     storageService.post(locations, place)
+
+}
+
+function getAllPlaces() {
+    return storageService.query(locations)//i think thats all
 }
