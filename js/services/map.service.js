@@ -27,8 +27,19 @@ function initMap(lat = 32.0749831, lng = 34.9120554) {
                 console.log(lat,lng)
                 let name = prompt('enter the name of this place')
                 placeService.createPlace(name, lat, lng)
-                // renderLocations()
               })
+
+            gMap.addListener("center_changed", () => {
+                const newCenter = gMap.getCenter();
+                const lat = newCenter.lat();
+                const lng = newCenter.lng();
+                
+                // update query parameters
+                const url = new URL(window.location.href);
+                url.searchParams.set("lat", lat);
+                url.searchParams.set("lng", lng);
+                history.replaceState(null, "", url);
+            })
         })
 }
 
