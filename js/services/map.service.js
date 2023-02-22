@@ -23,15 +23,7 @@ function initMap(lat = 32.0749831, lng = 34.9120554) {
             })
             console.log('Map!', gMap)
 
-            google.maps.event.addListener(gMap, 'click', function (event) {
-
-                let lat = event.latLng.lat()
-                let lng = event.latLng.lng()
-                console.log(lat,lng)
-                let name = 'reeee'//ofc to change
-                //adding here to make new place
-                placeService.createPlace(name, lat, lng)
-              })
+            
         })
 }
 

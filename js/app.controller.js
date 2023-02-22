@@ -10,6 +10,17 @@ window.onPanTo = onPanTo
 window.onGetLocs = onGetLocs
 window.onGetUserPos = onGetUserPos
 //uploading first 
+
+google.maps.event.addListener(gMap, 'click', function (event) {
+
+    let lat = event.latLng.lat()
+    let lng = event.latLng.lng()
+    console.log(lat,lng)
+    let name = 'reeee'//ofc to change
+    //adding here to make new place
+    placeService.createPlace(name, lat, lng)
+  })
+  
 function onInit() {
     const params = new Proxy(new URLSearchParams(window.location.search), {
         get: (searchParams, prop) => searchParams.get(prop),
