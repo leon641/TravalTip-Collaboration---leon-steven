@@ -5,6 +5,7 @@ export const placeService = {
     getPlace,
     createPlace,
     getAllPlaces,
+    removePlace,
 }
 
 const PLACE_KEY = 'locations'
@@ -31,4 +32,8 @@ function createPlace(name, lat, lng) {
 
 function getAllPlaces() {
     return storageService.query(PLACE_KEY)//i think thats all
+}
+
+function removePlace(id) {
+    return storageService.remove(PLACE_KEY, id)
 }

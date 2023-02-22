@@ -9,6 +9,7 @@ window.onAddMarker = onAddMarker
 window.onPanTo = onPanTo
 window.onGetLocs = onGetLocs
 window.onGetUserPos = onGetUserPos
+window.onRemove = onRemove
 
 
 
@@ -35,10 +36,10 @@ function getPosition() {
     })
 }
 
-function onAddMarker() {
-    console.log('Adding a marker')
-    mapService.addMarker({ lat: 32.0749831, lng: 34.9120554 })
-}
+// function onAddMarker() {
+//     console.log('Adding a marker')
+//     mapService.addMarker({ lat: 32.0749831, lng: 34.9120554 })
+// }
 
 function onGetLocs() {
     locService.getLocs()
@@ -52,13 +53,21 @@ function onGetLocs() {
 function onGetUserPos() {
     getPosition()
         .then(pos => {
-            console.log('User position is:', pos.coords)
-            document.querySelector('.user-pos').innerText =
-                `Latitude: ${pos.coords.latitude} - Longitude: ${pos.coords.longitude}`
+            // console.log('User position is:', pos.coords)
+            // document.querySelector('.user-pos').innerText =
+            //     `Latitude: ${pos.coords.latitude} - Longitude: ${pos.coords.longitude}`
+            mapService.addMarker({ lat: pos.coords.latitude, lng: pos.coords.longitude })
         })
         .catch(err => {
             console.log('err!!!', err)
         })
+}
+
+function onRemove(id) {
+    placeService.removePlace(id)
+    .then(() => {
+        renderLocations()
+    })
 }
 
 function renderLocations() {
@@ -68,10 +77,10 @@ function renderLocations() {
             locations.forEach(place => {
                 let createdAt = makeTime(place.createdAt)
                 strHtml += `
-                <div class='location-card' id=${place.id}>
-                <h3>${place.name}</h3>
+                <div class='location-card'>
+                <h3><button >GO</button>${place.name}</h3>
                 <p>lan: ${place.lat}, lng: ${place.lng}</p>
-                <small>created at ${createdAt}</small>
+                <small>created at ${createdAt}</small><button onclick="onRemove('${place.id}')">Delete</button>
                 </div>
                 `
             })
